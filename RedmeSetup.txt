@@ -1,0 +1,59 @@
+(1) Laravel install 
+	composer create-project laravel/laravel Laravel10_Redis --prefer-dist
+
+(2) Start laravel
+	php artisan serve
+
+(3) Install predis/predis package: Laravel uses the predis/predis package. You can install it via Composer
+	composer require predis/predis
+	
+(4) Laravel Redis Setup
+
+(4.1.) Configure Laravel to use Redis: Open your .env file and update the following lines:
+
+	Path: /.env
+	
+	REDIS_HOST=127.0.0.1
+	REDIS_PASSWORD=null
+	REDIS_PORT=6379
+
+(4.2.) Configure database.php: Open config/database.php and ensure the Redis section looks like this:
+	
+	The important info for this part is option > prefix which adds APP_NAME before the Redis key. 
+	
+	Example:
+	
+	Set key as 'name' but it records the Redis server as 'Laravel10_Redis_name'
+	
+	Redis::set('name', 'Taylor');
+	
+	Path: config/database.php
+	
+	<?php
+	'redis' => [
+
+		'client' => env('REDIS_CLIENT', 'predis'),
+
+		'options' => [
+			'cluster' => env('REDIS_CLUSTER', 'predis'),
+			'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+		],
+
+		'default' => [
+			'url' => env('REDIS_URL'),
+			'host' => env('REDIS_HOST', '127.0.0.1'),
+			'password' => env('REDIS_PASSWORD', null),
+			'port' => env('REDIS_PORT', '6379'),
+			'database' => env('REDIS_DB', '0'),
+		],
+
+		'cache' => [
+			'url' => env('REDIS_URL'),
+			'host' => env('REDIS_HOST', '127.0.0.1'),
+			'password' => env('REDIS_PASSWORD', null),
+			'port' => env('REDIS_PORT', '6379'),
+			'database' => env('REDIS_CACHE_DB', '1'),
+		],
+
+	],
+	?>
