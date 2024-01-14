@@ -57,3 +57,37 @@
 
 	],
 	?>
+(4.3.) Create Redis Controller
+	php artisan make:Controller RedisController --resource
+
+(4.4.) Configure RedisController.php
+		
+		Path: Laravel10_Redis\app\Http\Controllers\RedisController.php
+		
+		Code:
+		$data = "";
+
+        try{
+            Redis::set('name', 'Taylor');
+            $data = "Redis::set('name', 'Taylor'); > ";
+            $data .= "Redis::get('name'); >";
+            $data .= Redis::get('name');
+        } catch (\Exception $e) {
+            $data = 'Redis connection failed. Error: ' . $e->getMessage();
+        }
+
+
+        return view('welcome', ['data' => $data]);
+
+(4.5.) Configure web.php
+
+	Path: Laravel10_Redis\routes\web.php
+	
+	Code:
+	
+	Route::get('/', 'App\Http\Controllers\RedisController@index');
+	
+
+(5.) Install Redis Server
+
+	sudo apt-get install redis-server
