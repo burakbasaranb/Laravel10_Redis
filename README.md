@@ -1,3 +1,13 @@
+<p align="center">
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+    </a>
+    <br>
+    <a href="https://redis.io" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Logo-redis.svg" width="200" alt="Redis Logo">
+    </a>
+</p>
+
 # Laravel Redis Server Connection
  
 Welcome to the Laravel Redis Server Connection repository! This project serves as a guide on how to establish a seamless connection between a Laravel project and a Redis server. Feel free to fork and use it for your projects. Follow the straightforward steps below to configure and run this project effortlessly.
